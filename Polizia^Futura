@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polizia Futura - Portale Informativo Indipendente</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0b1d3a;
+            --accent-color: #1e3c72;
+            --light-blue: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --gray: #6c757d;
+            --border-color: #e0e0e0;
+        }
+
+        body.dark-mode {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #e6edf3;
+            --gray: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-container h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-container span {
+            font-size: 0.75rem;
+            color: var(--light-blue);
+            display: block;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-blue);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background-color: var(--light-blue);
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(11, 29, 58, 0.85), rgba(11, 29, 58, 0.9)), url('https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            color: #dcdde1;
+        }
+
+        .search-bar-container {
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+            position: relative;
+        }
+
+        .search-bar-container input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .search-bar-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0b1d3a;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main, .btn-secondary {
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .btn-main {
+            background-color: var(--light-blue);
+            color: #ffffff;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-main:hover, .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Container & Titoli */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--light-blue);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        body:not(.dark-mode) .section-title {
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        /* Widget Curiosità */
+        .widget-box {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--light-blue);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-content h4 {
+            color: var(--light-blue);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .widget-content p {
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .btn-refresh {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Grid Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--light-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card-content p {
+            color: var(--gray);
+            font-size: 0.92rem;
+            margin-bottom: 15px;
+        }
+
+        /* Glossario Interattivo */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .glossary-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .glossary-item h4 {
+            color: var(--light-blue);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Miti da Sfatare (Flip Cards) */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 220px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .flip-card-front {
+            background-color: var(--card-bg);
+        }
+
+        .flip-card-front i {
+            font-size: 2rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+
+        .flip-card-back {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back h4 {
+            color: var(--light-blue);
+            margin-bottom: 10px;
+        }
+
+        /* Quiz Interattivo */
+        .quiz-container {
+            background-color: var(--card-bg);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--light-blue);
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            padding: 14px 18px;
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: left;
+            color: var(--text-color);
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--light-blue);
+        }
+
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .quiz-option.wrong {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none;
+            font-size: 0.95rem;
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--light-blue);
+        }
+
+        /* Timeline Storica */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 30px;
+            border-left: 3px solid var(--light-blue);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -39px;
+            top: 22px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            border: 3px solid var(--primary-color);
+        }
+
+        .timeline-year {
+            font-weight: 800;
+            color: var(--light-blue);
+            font-size: 1.1rem;
+        }
+
+        /* Diario e Download */
+        .diary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .diary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .diary-box {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--light-blue);
+        }
+
+        .diary-box textarea {
+            width: 100%;
+            height: 140px;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        /* TikTok Banner */
+        .social-banner {
+            background: linear-gradient(135deg, #0b1d3a, #16213e);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .social-banner i {
+            font-size: 3rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+
+        .social-banner a {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: var(--light-blue);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* AI Chat Widget */
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .chat-btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 2px solid var(--light-blue);
+        }
+
+        .chat-box {
+            display: none;
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            width: 330px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            height: 260px;
+            padding: 15px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .chat-footer button {
+            background-color: var(--light-blue);
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #dcdde1;
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--light-blue);
+            text-decoration: none;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            max-width: 850px;
+            margin: 20px auto 0 auto;
+            color: #a4b0be;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <div>
+                    <h1>POLIZIA FUTURA</h1>
+                    <span>Conoscere. Informarsi. Prepararsi.</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#concorsi">Concorsi</a></li>
+                <li><a href="#specialita">Specialità</a></li>
+                <li><a href="#miti">Miti da Sfatare</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#glossario">Glossario</a></li>
+                <li><a href="#storia">Storia</a></li>
+                <li><a href="#diario">Il Mio Percorso</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" onclick="toggleTheme()" title="Cambia tema Chiaro/Scuro">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="btn-login" onclick="simulaLogin()">
+                    <i class="fa-brands fa-google"></i> <span id="loginText">Accedi</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>«Il tuo futuro potrebbe iniziare da qui.»</h2>
+        <p>Scopri il mondo della Polizia di Stato italiana: concorsi, formazione, specialità, storia, mezzi, notizie e tutto ciò che un aspirante poliziotto dovrebbe conoscere.</p>
+        
+        <!-- Barra di Ricerca -->
+        <div class="search-bar-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" onkeyup="filtraContenuti()" placeholder="Cerca un reparto, un concorso, una sigla (es. Volante, Stradale, Allievi)...">
+        </div>
+
+        <div class="hero-btns">
+            <a href="#quiz" class="btn-main"><i class="fa-solid fa-graduation-cap"></i> Inizia il Quiz</a>
+            <a href="#diario" class="btn-secondary"><i class="fa-solid fa-book"></i> Il Mio Diario</a>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <!-- Widget Curiosità e Glossario -->
+        <div class="widget-box">
+            <div class="widget-content">
+                <h4><i class="fa-solid fa-lightbulb"></i> Lo sapevi che? &bull; Pillola del Giorno</h4>
+                <p id="curiositaText">Caricamento curiosità...</p>
+            </div>
+            <button class="btn-refresh" onclick="nuovaCuriosita()">
+                <i class="fa-solid fa-rotate"></i> Altra curiosità
+            </button>
+        </div>
+
+        <!-- Sezione Concorsi e Reparti -->
+        <h2 class="section-title" id="concorsi">Esplora il Portale</h2>
+        <p class="section-subtitle">Guide, concorsi e approfondimenti sulle specialità della Polizia di Stato</p>
+        
+        <div class="grid" id="cardsGrid">
+            <div class="card searchable-item">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Concorsi Allievi Agenti">
+                <div class="card-content">
+                    <span class="card-tag">CONCORSI ATTIVI</span>
+                    <h3>Allievi Agenti & Vice Ispettori</h3>
+                    <p>Tutti i dettagli su requisiti anagrafici, titoli di studio, prove fisiche, accertamenti psico-fisici e link al portale inPA.</p>
+                </div>
+            </div>
+
+            <div class="card searchable-item" id="formazione">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Scuole di Formazione">
+                <div class="card-content">
+                    <span class="card-tag">FORMAZIONE</span>
+                    <h3>Scuole Allievi e Giuramento</h3>
+                    <p>Come si svolge la giornata tipo nelle Scuole di Polizia, le materie giuridiche, l'addestramento e la cerimonia del Giuramento.</p>
+                </div>
+            </div>
+
+            <div class="card searchable-item" id="specialita">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80" alt="Polizia Stradale">
+                <div class="card-content">
+                    <span class="card-tag">SPECIALITÀ</span>
+                    <h3>Polizia Stradale e Volanti (UPGSP)</h3>
+                    <p>Dalla prevenzione e soccorso pubblico nelle città al controllo delle grandi arterie autostradali: mezzi e dotazioni.</p>
+                </div>
+            </div>
+
+            <div class="card searchable-item">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="Polizia Postale">
+                <div class="card-content">
+                    <span class="card-tag">TECNOLOGIA</span>
+                    <h3>Polizia Postale e Scientifica</h3>
+                    <p>Sicurezza cibernetica, contrasto ai reati informatici e indagini tecnico-scientifiche sulla scena del crimine.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Miti da Sfatare -->
+        <h2 class="section-title" id="miti" style="margin-top: 70px;">Miti da Sfatare</h2>
+        <p class="section-subtitle">Clicca su una scheda per scoprire la verità dietro le voci più diffuse sui social</p>
+
+        <div class="flip-grid">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fa-solid fa-ruler-vertical"></i>
+                        <h3>«Serve un'altezza minima di 1,65 m per entrare?»</h3>
+                        <small style="color: var(--gray); margin-top: 10px;">(Clicca per girare)</small>
+                    </div>
+                    <div class="flip-card-back">
+                        <h4>FALSO!</h4>
+                        <p>Dal 2015 i limiti di altezza sono stati aboliti. Oggi si valutano parametri fisici legati alla composizione corporea (massa grassa, massa magra e forza muscolare).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h3>«Appena finito il corso ti mandano sotto casa?»</h3>
+                        <small style="color: var(--gray); margin-top: 10px;">(Clicca per girare)</small>
+                    </div>
+                    <div class="flip-card-back">
+                        <h4>FALSO!</h4>
+                        <p>La prima assegnazione avviene in base alle esigenze dell'Amministrazione e alla graduatoria finale del corso, quasi sempre fuori dalla provincia di residenza.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fa-solid fa-building-shield"></i>
+                        <h3>«Questura e Commissariato sono la stessa cosa?»</h3>
+                        <small style="color: var(--gray); margin-top: 10px;">(Clicca per girare)</small>
+                    </div>
+                    <div class="flip-card-back">
+                        <h4>FALSO!</h4>
+                        <p>La Questura è l'ufficio principale che coordina la Polizia a livello provinciale (diretto dal Questore). I Commissariati sono uffici distaccati sul territorio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulatore di Quiz -->
+        <h2 class="section-title" id="quiz" style="margin-top: 70px;">Simulatore di Quiz</h2>
+        <p class="section-subtitle">Esercitazione indipendente su Cultura Generale e Ordinamento della Polizia di Stato</p>
+
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <span id="quizProgress">Domanda 1 di 5</span>
+                <span id="quizScore">Punteggio: 0</span>
+            </div>
+            <div class="quiz-question" id="questionText">Caricamento domanda...</div>
+            <div class="quiz-options" id="optionsContainer"></div>
+            <div class="quiz-feedback" id="quizFeedback"></div>
+            <button class="btn-main" id="nextBtn" style="margin-top: 20px; display: none; border: none; cursor: pointer;" onclick="prossimaDomanda()">Prossima Domanda &rarr;</button>
+        </div>
+
+        <!-- Glossario Interattivo -->
+        <h2 class="section-title" id="glossario" style="margin-top: 70px;">Glossario e Sigle Utili</h2>
+        <p class="section-subtitle">Tutti i termini e le definizioni fondamentali del mondo della Polizia</p>
+
+        <div class="glossary-grid">
+            <div class="glossary-item searchable-item">
+                <h4>Questura</h4>
+                <p>Ufficio provinciale dell'Amministrazione della Pubblica Sicurezza, diretto dal Questore.</p>
+            </div>
+            <div class="glossary-item searchable-item">
+                <h4>Commissariato</h4>
+                <p>Presidio territoriale distaccato della Polizia di Stato che copre specifiche zone o città.</p>
+            </div>
+            <div class="glossary-item searchable-item">
+                <h4>UPGSP</h4>
+                <p>Ufficio Prevenzione Generale e Soccorso Pubblico: il reparto che gestisce le Volanti nelle città.</p>
+            </div>
+            <div class="glossary-item searchable-item">
+                <h4>DIGOS</h4>
+                <p>Divisione Investigazioni Generali e Operazioni Speciali, presente in ogni Questura.</p>
+            </div>
+        </div>
+
+        <!-- Timeline Storica -->
+        <h2 class="section-title" id="storia" style="margin-top: 70px;">Tappe Storiche</h2>
+        <p class="section-subtitle">L'evoluzione dell'istituzione dal 1852 ai giorni nostri</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-year">1852</span>
+                <h4>Nascita del Corpo delle Guardie di Pubblica Sicurezza</h4>
+                <p>Istituito nel Regno di Sardegna per garantire l'ordine pubblico e la sicurezza dei cittadini nelle città.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">1959</span>
+                <h4>Ingresso delle Donne nella Polizia</h4>
+                <p>Viene istituito il Corpo di Polizia Femminile, un passo storico per la tutela dei minori e delle donne.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">1° Aprile 1981 (Legge n. 121)</span>
+                <h4>La Riforma e la Smilitarizzazione</h4>
+                <p>Nasce l'attuale <strong>Polizia di Stato</strong>: un corpo civile ad ordinamento speciale al servizio delle istituzioni democratiche e dei cittadini.</p>
+            </div>
+        </div>
+
+        <!-- Il Mio Diario dell'Aspirante -->
+        <h2 class="section-title" id="diario" style="margin-top: 70px;">Il Mio Percorso verso la Polizia</h2>
+        <p class="section-subtitle">I tuoi progressi e i tuoi appunti vengono salvati automaticamente su questo dispositivo</p>
+
+        <div class="diary-grid">
+            <div class="diary-box">
+                <h3 style="margin-bottom: 15px; color: var(--light-blue);"><i class="fa-solid fa-list-check"></i> Checklist dell'Aspirante</h3>
+                <label class="checklist-item"><input type="checkbox" id="chk1" onchange="salvaDiario()"> Verificare requisiti anagrafici e titolo di studio</label>
+                <label class="checklist-item"><input type="checkbox" id="chk2" onchange="salvaDiario()"> Attivare SPID / CIE per l'accesso al portale inPA</label>
+                <label class="checklist-item"><input type="checkbox" id="chk3" onchange="salvaDiario()"> Controllare i parametri per le prove di efficienza fisica</label>
+                <label class="checklist-item"><input type="checkbox" id="chk4" onchange="salvaDiario()"> Completare almeno 3 simulazioni di quiz</label>
+                <label class="checklist-item"><input type="checkbox" id="chk5" onchange="salvaDiario()"> Studiare la Legge 121/1981 e l'ordinamento</label>
+            </div>
+
+            <div class="diary-box">
+                <h3 style="margin-bottom: 10px; color: var(--light-blue);"><i class="fa-solid fa-pen-to-square"></i> I Miei Appunti & Obiettivi</h3>
+                <p style="font-size: 0.85rem; color: var(--gray);">Scrivi qui il reparto in cui sogni di entrare o gli argomenti da ripassare:</p>
+                <textarea id="appuntiPersonali" onkeyup="salvaDiario()" placeholder="Es. Obiettivo: entrare nella Polizia Stradale. Da ripassare: diritto costituzionale..."></textarea>
+                <small id="statoSalvataggio" style="color: #28a745; display: block; margin-top: 5px;"></small>
+            </div>
+        </div>
+
+        <!-- TikTok Banner -->
+        <div class="social-banner">
+            <i class="fa-brands fa-tiktok"></i>
+            <h3>Seguici su TikTok: PoliziaDiStato311</h3>
+            <p>Pillole sui concorsi, quiz veloci e curiosità direttamente sul profilo <strong>@poliziadistato311</strong>.</p>
+            <a href="https://www.tiktok.com/@poliziadistato311" target="_blank">Apri TikTok (@poliziadistato311)</a>
+        </div>
+
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget">
+        <div class="chat-btn" onclick="toggleChat()" title="Chiedi all'Assistente Virtuale">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <span><i class="fa-solid fa-robot"></i> Assistente Polizia Futura</span>
+                <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="toggleChat()"></i>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <p><strong>IA:</strong> Ciao! Chiedimi pure informazioni su concorsi, requisiti, Legge 121/81, reparti o come funziona il sito!</p>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="userInput" placeholder="Scrivi qui la tua domanda..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contatti e segnalazioni: <a href="mailto:113poliziadistato113@gmail.com">113poliziadistato113@gmail.com</a> | TikTok: <a href="https://www.tiktok.com/@poliziadistato311" target="_blank">@poliziadistato311</a></p>
+        <p style="margin-top: 8px;">Fonti istituzionali di riferimento: <a href="https://www.poliziadistato.it/" target="_blank">Polizia di Stato</a> &bull; <a href="https://www.inpa.gov.it/" target="_blank">Portale inPA</a> &bull; <a href="https://www.normattiva.it/" target="_blank">Normattiva</a></p>
+        <div class="disclaimer">
+            <p><strong>Avviso Legale:</strong> Questo è un progetto informativo indipendente, non affiliato, gestito o autorizzato dalla Polizia di Stato o dal Ministero dell'Interno. Le informazioni pubblicate hanno finalità divulgative e non sostituiscono i bandi, gli avvisi e le comunicazioni ufficiali. In caso di emergenza contattare sempre il Numero Unico 112.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript completo -->
+    <script>
+        // 1. DARK MODE
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('themeIcon');
+            if(document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        // 2. SIMULAZIONE LOGIN CON GOOGLE
+        function simulaLogin() {
+            const btnText = document.getElementById('loginText');
+            if(btnText.innerText === "Accedi") {
+                const nome = prompt("Inserisci il tuo nome o email Google per personalizzare il tuo percorso:");
+                if(nome && nome.trim() !== "") {
+                    btnText.innerText = nome.split('@')[0];
+                    alert("Benvenuto su Polizia Futura, " + btnText.innerText + "!");
+                }
+            } else {
+                if(confirm("Vuoi disconnetterti?")) {
+                    btnText.innerText = "Accedi";
+                }
+            }
+        }
+
+        // 3. BARRA DI RICERCA ISTANTANEA
+        function filtraContenuti() {
+            const filtro = document.getElementById('searchInput').value.toLowerCase();
+            const elementi = document.querySelectorAll('.searchable-item');
+            
+            elementi.forEach(el => {
+                const testo = el.innerText.toLowerCase();
+                el.style.display = testo.includes(filtro) ? 'block' : 'none';
+            });
+        }
+
+        // 4. WIDGET CURIOSITÀ E GLOSSARIO
+        const curiositaList = [
+            "Perché si chiamano 'Volanti'? Il termine nacque negli anni '50 con la Squadra Mobile di Milano, dotata di auto velocissime (le Alfa Romeo 1900) pronte a 'volare' sul luogo dell'intervento.",
+            "Cosa significa UPGSP? È l'acronimo di Ufficio Prevenzione Generale e Soccorso Pubblico, il cuore operativo delle Questure che coordina le Volanti.",
+            "La pantera della Polizia: Fu adottata come simbolo negli anni '50 per rappresentare agilità, scatto, vigilanza e prontezza d'intervento.",
+            "Cosa significa DIGOS? Divisione Investigazioni Generali e Operazioni Speciali, reparto presente in ogni Questura.",
+            "Il motto della Polizia di Stato è 'Sub lege libertas' (Sotto la legge la libertà), a indicare che la vera libertà si realizza nel rispetto delle regole."
+        ];
+
+        function nuvCuriosita() {
+            const randomIndex = Math.floor(Math.random() * curiositaList.length);
+            document.getElementById('curiositaText').innerText = curiositaList[randomIndex];
+        }
+        function nuovaCuriosita() { nuvCuriosita(); }
+        nuvCuriosita();
+
+        // 5. SIMULATORE QUIZ
+        const domandeQuiz = [
+            {
+                domanda: "Con quale legge la Polizia di Stato è stata smilitarizzata diventando un corpo civile?",
+                opzioni: ["Legge 1° aprile 1981, n. 121", "Legge 23 dicembre 1978, n. 833", "Legge 7 agosto 1990, n. 241"],
+                corretta: 0,
+                spiegazione: "La Legge 121/1981 rappresenta la storica riforma dell'Amministrazione della Pubblica Sicurezza."
+            },
+            {
+                domanda: "Qual è il motto ufficiale della Polizia di Stato?",
+                opzioni: ["Nei secoli fedele", "Sub lege libertas", "Nec recisa recedit"],
+                corretta: 1,
+                spiegazione: "'Sub lege libertas' significa 'Sotto la legge la libertà'."
+            },
+            {
+                domanda: "Chi è l'autorità provinciale di Pubblica Sicurezza a capo della Questura?",
+                opzioni: ["Il Prefetto", "Il Questore", "Il Sindaco"],
+                corretta: 1,
+                spiegazione: "Il Questore dirige, coordina e controlla a livello tecnico-operativo i servizi di ordine e sicurezza pubblica nella provincia."
+            },
+            {
+                domanda: "Quale portale nazionale viene utilizzato per inviare le domande ai concorsi pubblici?",
+                opzioni: ["Portale inPA", "Portale INPS", "Portale PagoPA"],
+                corretta: 0,
+                spiegazione: "Le candidature per i concorsi pubblici si presentano tramite il portale unico del reclutamento inPA."
+            },
+            {
+                domanda: "Quale reparto si occupa della sicurezza delle comunicazioni e del contrasto ai crimini informatici?",
+                opzioni: ["Polizia Ferroviaria", "Polizia Postale e per la Sicurezza Cibernetica", "Reparto Mobile"],
+                corretta: 1,
+                spiegazione: "La Polizia Postale tutela l'integrità delle reti informatiche e contrasta i reati online."
+            }
+        ];
+
+        let indiceDomanda = 0;
+        let punteggio = 0;
+        let risposto = false;
+
+        function caricaDomanda() {
+            risposto = false;
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('quizFeedback').style.display = 'none';
+            
+            const q = domandeQuiz[indiceDomanda];
+            document.getElementById('quizProgress').innerText = `Domanda ${indiceDomanda + 1} di ${domandeQuiz.length}`;
+            document.getElementById('questionText').innerText = q.domanda;
+            
+            const optionsDiv = document.getElementById('optionsContainer');
+            optionsDiv.innerHTML = '';
+            
+            q.opzioni.forEach((opzione, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.innerText = opzione;
+                btn.onclick = () => verificaRisposta(index, btn);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function verificaRisposta(scelta, btnCliccato) {
+            if(risposto) return;
+            risposto = true;
+            
+            const q = domandeQuiz[indiceDomanda];
+            const bottoni = document.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById('quizFeedback');
+            
+            if(scelta === q.corretta) {
+                btnCliccato.classList.add('correct');
+                punteggio++;
+                document.getElementById('quizScore').innerText = `Punteggio: ${punteggio}`;
+                feedback.innerHTML = `<strong>Esatto!</strong> ${q.spiegazione}`;
+            } else {
+                btnCliccato.classList.add('wrong');
+                bottoni[q.corretta].classList.add('correct');
+                feedback.innerHTML = `<strong>Risposta errata.</strong> ${q.spiegazione}`;
+            }
+            
+            feedback.style.display = 'block';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        function prossimaDomanda() {
+            indiceDomanda++;
+            if(indiceDomanda < domandeQuiz.length) {
+                caricaDomanda();
+            } else {
+                document.getElementById('questionText').innerText = `Simulazione completata! Hai totalizzato ${punteggio} su ${domandeQuiz.length}.`;
+                document.getElementById('optionsContainer').innerHTML = `<button class="btn-main" style="border:none; cursor:pointer;" onclick="ricominciaQuiz()">Ricomincia il Quiz</button>`;
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('quizFeedback').style.display = 'none';
+            }
+        }
+
+        function ricominciaQuiz() {
+            indiceDomanda = 0;
+            punteggio = 0;
+            document.getElementById('quizScore').innerText = `Punteggio: 0`;
+            caricaDomanda();
+        }
+        caricaDomanda();
+
+        // 6. DIARIO DELL'ASPIRANTE (LocalStorage)
+        function salvaDiario() {
+            for(let i=1; i<=5; i++) {
+                const chk = document.getElementById('chk' + i);
+                if(chk) localStorage.setItem('pf_chk' + i, chk.checked);
+            }
+            const appunti = document.getElementById('appuntiPersonali');
+            if(appunti) localStorage.setItem('pf_appunti', appunti.value);
+            
+            const stato = document.getElementById('statoSalvataggio');
+            if(stato) {
+                stato.innerText = "✓ Salvato automaticamente";
+                setTimeout(() => { stato.innerText = ""; }, 2000);
+            }
+        }
+
+        function caricaDiario() {
+            for(let i=1; i<=5; i++) {
+                const saved = localStorage.getItem('pf_chk' + i);
+                const chk = document.getElementById('chk' + i);
+                if(saved === 'true' && chk) chk.checked = true;
+            }
+            const appunti = localStorage.getItem('pf_appunti');
+            const textarea = document.getElementById('appuntiPersonali');
+            if(appunti && textarea) textarea.value = appunti;
+        }
+        caricaDiario();
+
+        // 7. ASSISTENTE AI
+        function toggleChat() {
+            const chatBox = document.getElementById('chatBox');
+            if(chatBox) chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chatBody = document.getElementById('chatBody');
+            if(!input || input.value.trim() === '') return;
+
+            const userMsg = document.createElement('p');
+            userMsg.style.marginTop = "8px";
+            userMsg.innerHTML = `<strong>Tu:</strong> ${input.value}`;
+            chatBody.appendChild(userMsg);
+
+            const query = input.value.toLowerCase();
+            input.value = '';
+
+            setTimeout(() => {
+                const aiMsg = document.createElement('p');
+                aiMsg.style.marginTop = "8px";
+                let risposta = "";
+
+                if(query.includes('concorso') || query.includes('bandi') || query.includes('domanda')) {
+                    risposta = "I bandi ufficiali vengono pubblicati sul portale <strong>inPA</strong> e sul sito istituzionale della Polizia di Stato. Controlla sempre i requisiti di età e titolo di studio.";
+                } else if(query.includes('altezza') || query.includes('requisiti')) {
+                    risposta = "I limiti di altezza sono stati aboliti! Vengono invece valutati i parametri fisici e l'idoneità psico-fisica e attitudinale.";
+                } else if(query.includes('121') || query.includes('storia') || query.includes('riforma')) {
+                    risposta = "La Legge 1° aprile 1981, n. 121 ha trasformato il Corpo in un'istituzione civile ad ordinamento speciale.";
+                } else if(query.includes('tiktok') || query.includes('contatti') || query.includes('email')) {
+                    risposta = "Puoi seguirci su TikTok (@poliziadistato311) o scrivere all'email 113poliziadistato113@gmail.com.";
+                } else {
+                    risposta = "Ottima domanda! Prova a usare il simulatore di Quiz qui sulla pagina oppure scrivici a 113poliziadistato113@gmail.com per proporre un nuovo approfondimento.";
+                }
+
+                aiMsg.innerHTML = `<strong>IA:</strong> ${risposta}`;
+                chatBody.appendChild(aiMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 400);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') sendMessage();
+        }
+    </script>
+</body>
+</html>
